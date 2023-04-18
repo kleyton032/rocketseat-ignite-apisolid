@@ -16,7 +16,6 @@ describe('Register Use Case', () => {
             password: "123456"
         })
 
-
         expect(user.id).toEqual(expect.any(String))
 
     })
@@ -38,7 +37,6 @@ describe('Register Use Case', () => {
         console.log(user.password_hash)
         expect(isPasswordCorrectlyHashed).toBe(true)
 
-
     })
 
     it('should not be able to register with same email twice', async () => {
@@ -53,7 +51,6 @@ describe('Register Use Case', () => {
             password: "123456"
         })
 
-
         await expect(() =>
             registerUseCase.execute({
                 name: "Todo Do",
@@ -61,7 +58,6 @@ describe('Register Use Case', () => {
                 password: "123456"
             })
         ).rejects.toBeInstanceOf(UserAlreadyExistsError)
-
 
     })
 })
