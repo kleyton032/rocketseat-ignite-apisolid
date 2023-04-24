@@ -3,6 +3,7 @@ import { FastifyRequest, FastifyReply } from 'fastify'
 import { z } from 'zod'
 import { UserAlreadyExistsError } from '@/uses-cases/errors/user-already-exists-error'
 import { makeRegisterUseCase } from '@/uses-cases/factories/make-register-use-case'
+import { RegisterUseCase } from '@/uses-cases/register/register'
 
 export async function register(req: FastifyRequest, res: FastifyReply) {
     const registerBodySchema = z.object({
@@ -29,6 +30,6 @@ export async function register(req: FastifyRequest, res: FastifyReply) {
         throw error
     }
 
-    return res.status(201).send()
+    return res.status(200).send()
 
 }
