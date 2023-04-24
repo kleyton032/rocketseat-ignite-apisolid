@@ -4,9 +4,6 @@ import { AuthenticateUseCase } from './authenticate'
 import { hash } from 'bcryptjs'
 import { InvalidCredentialsError } from '../errors/invalid-credentials-error'
 
-// const usersRepository = new InMemoryUsersRepository()
-// const sut = new AuthenticateUseCase(usersRepository)
-
 let usersRepository : InMemoryUsersRepository
 let sut: AuthenticateUseCase
 
