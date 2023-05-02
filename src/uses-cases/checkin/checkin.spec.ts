@@ -18,6 +18,7 @@ describe('Check-in Use Case', () => {
         sut = new CheckInUseCase(checkInsRepository, gymsRepository)
 
         await gymsRepository.create({
+            id: 'gym-01',
             title: 'Gym Qualquer',
             description: '',
             phone: '',
