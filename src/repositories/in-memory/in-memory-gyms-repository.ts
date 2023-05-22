@@ -33,9 +33,6 @@ export class InMemoryGymsRepository implements GymsRepository {
 
                 return distance < 10
             })
-
-        
-
     }
 
 
