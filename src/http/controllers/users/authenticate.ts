@@ -22,17 +22,24 @@ export async function authenticate(req: FastifyRequest, res: FastifyReply) {
             password
         })
 
-        const token = await res.jwtSign({}, 
+        const token = await res.jwtSign(
             {
-                sign:{
+                role: user.role,
+            },
+
+            {
+                sign: {
                     sub: user.id
                 }
             }
         )
 
-        const refreshToken = await res.jwtSign({}, 
+        const refreshToken = await res.jwtSign(
             {
-                sign:{
+                role: user.role,
+            },
+            {
+                sign: {
                     sub: user.id,
                     expiresIn: '7d'
                 }
@@ -40,15 +47,15 @@ export async function authenticate(req: FastifyRequest, res: FastifyReply) {
         )
 
         return res.status(200)
-        .setCookie('refreshToken', refreshToken, {
-            path: '/',
-            secure: true,
-            sameSite: true,
-            httpOnly: true
-        })
-        .send({
-            token,
-        })
+            .setCookie('refreshToken', refreshToken, {
+                path: '/',
+                secure: true,
+                sameSite: true,
+                httpOnly: true
+            })
+            .send({
+                token,
+            })
 
 
     } catch (error) {
@@ -59,6 +66,6 @@ export async function authenticate(req: FastifyRequest, res: FastifyReply) {
         throw error
     }
 
- 
+
 
 }
